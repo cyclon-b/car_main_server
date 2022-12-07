@@ -9,6 +9,9 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 111
+      MONGO_INITDB_DATABASE: car_main
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   mongo-express:
     image: mongo-express
@@ -25,12 +28,11 @@ services:
     environment:
       MONGO_USER: root
       MONGO_PASSWORD: 111
-      APP_PORT: 3001
-    command: bash -c "npm run start:prod"
+      APP_PORT: 3000
     volumes:
       - .:/server
     ports:
-      - "3001:3001"
+      - "3000:3000"
     depends_on:
       - mongo
       - mongo-express

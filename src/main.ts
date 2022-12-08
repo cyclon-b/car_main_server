@@ -16,7 +16,7 @@ async function bootstrap() {
       transports: [
         new winston.transports.File({
           level: 'error',
-          filename: '../logs/errors.log',
+          filename: './logs/errors.log',
           maxsize: 100,
           zippedArchive: true,
         }),

@@ -33,6 +33,8 @@ services:
       MONGO_PASSWORD: Kin11001Mk?
       MONGO_DB_NAME: car_main
       IS_PRODUCTION: false
+      DEFAULT_EMAIL: mkinitcpio.feedback@outlook.com
+      DEFAULT_SMTP_EMAIL: 
     restart: always
     volumes:
       - .:/server

@@ -11,4 +11,4 @@ RUN npm run prebuild
 
 RUN npm run build
 
-CMD [ "npm", "run", "start", "--port", "3000" ]
+CMD [ "npm", "run", "start:prod", "--port", "3000" ]

@@ -19,16 +19,21 @@ services:
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: 111
+      ME_CONFIG_BASICAUTH_USERNAME: dbAdmin
+      ME_CONFIG_BASICAUTH_PASSWORD: Kin11001Mk?
+      ME_CONFIG_SITE_COOKIESECRET: 11122211
+      ME_CONFIG_SITE_SESSIONSECRET: 222111222
       ME_CONFIG_MONGODB_URL: mongodb://root:111@mongo:27017/
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: true
 
   car-server:
     build: .
     environment:
-      MONGO_USER: root
-      MONGO_PASSWORD: 111
-      APP_PORT: 3000
+      MONGO_USER: carAdmin
+      MONGO_PASSWORD: Kin11001Mk?
+      MONGO_DB_NAME: car_main
+      IS_PRODUCTION: false
+    restart: always
     volumes:
       - .:/server
     ports:

@@ -4,7 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { CreateFeedbackDto } from './../../dto/create-feedback.dto';
 import { FeedbackService } from './../../providers/feedback/feedback.service';
 @ApiTags('feedback')
-@Controller('feedback')
+@Controller('api/feedback')
 export class FeedbackController {
   constructor(private feedbackService: FeedbackService) {}
 

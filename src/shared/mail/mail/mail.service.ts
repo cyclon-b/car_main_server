@@ -14,8 +14,8 @@ export class MailService {
     const { email, type, text } = params;
     this.mailerService
       .sendMail({
-        to: `${env?.DEFAULT_EMAIL} || mkinitcpio.feedback@outlook.com`,
-        from: 'mkinitcpio.team@outlook.com',
+        to: `${env?.DEFAULT_EMAIL}`,
+        from: `${env?.DEFAULT_SMTP_EMAIL}`,
         subject: `[FEEDBACK FROM APP] You have a new ${type}`,
         html: `
         <p>${email} highlighted a new  ${type}</p>

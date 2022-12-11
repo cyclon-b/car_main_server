@@ -29,9 +29,7 @@ async function bootstrap() {
       ],
     }),
   });
-  app.use(helmet());
-
-  if (!env?.IS_PRODUCTION) {
+  if (env?.IS_PRODUCTION === 'false') {
     const config = new DocumentBuilder()
       .setTitle(SWAGGER_CONFIG.title)
       .setDescription(SWAGGER_CONFIG.description)
@@ -41,7 +39,8 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api/swagger', app, document);
   }
+  app.use(helmet());
 
-  await app.listen(env?.APP_PORT || 3000);
+  await app.listen(3000);
 }
 bootstrap();

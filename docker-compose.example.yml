@@ -1,0 +1,39 @@
+version: "3.9"
+# Add your proper credentials here
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: topsecret
+      MONGO_INITDB_DATABASE: db name
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: username
+      ME_CONFIG_BASICAUTH_PASSWORD: topsecret
+      ME_CONFIG_MONGODB_URL: mongodb://username:topsecret@mongo:27017/
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: true
+
+  car-server:
+    build: .
+    environment:
+      MONGO_USER: username
+      MONGO_PASSWORD: topsecret
+      MONGO_DB_NAME: db name
+      IS_PRODUCTION: false
+      DEFAULT_EMAIL: example@email.com
+      DEFAULT_SMTP_EMAIL: example@email.com
+      SMTP_PASSWORD: topsecret
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+      - mongo-express

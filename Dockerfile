@@ -1,13 +1,13 @@
 FROM node:latest
 
+RUN mkdir server
+
 WORKDIR /server
 
 COPY . /server
 
 
 RUN npm install
-
-RUN npm run prebuild
 
 RUN npm run build
 

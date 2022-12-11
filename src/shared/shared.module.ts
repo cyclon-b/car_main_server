@@ -6,6 +6,5 @@ import { DatabaseModule } from './database/database.module';
   imports: [MailModule, DatabaseModule],
   providers: [Logger],
   exports: [MailModule, DatabaseModule, Logger],
-
 })
 export class SharedModule {}

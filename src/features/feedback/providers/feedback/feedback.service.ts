@@ -10,7 +10,9 @@ export class FeedbackService {
     @Inject('FEEDBACK_MODEL') private feedbackModel: Model<FeedBackModel>,
   ) {}
 
-  create(createFeedbackDto: CreateFeedbackDto): Observable<FeedBackModel> {
+  public create(
+    createFeedbackDto: CreateFeedbackDto,
+  ): Observable<FeedBackModel> {
     const createdFeedback = new this.feedbackModel(createFeedbackDto);
     return from(createdFeedback.save());
   }

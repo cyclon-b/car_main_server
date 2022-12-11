@@ -1,21 +1,22 @@
 import { MailerModule } from '@nestjs-modules/mailer';
 import { Module, Logger } from '@nestjs/common';
 import { MailService } from './mail/mail.service';
+import { env } from 'process';
 
 @Module({
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: 'smtp-mail.outlook.com',
-        port: 587,
+        host: env?.DEFAULT_SMTP_SERVER,
+        port: env?.DEFAULT_SMTP_PORT,
         auth: {
-          user: 'mkinitcpio.team@outlook.com',
-          pass: 'Kin11001Mk?',
+          user: env?.DEFAULT_SMTP_EMAIL,
+          pass: env?.SMTP_PASSWORD,
         },
       },
 
       defaults: {
-        from: '"[FEEDBACK]" <mkinitcpio.team@outlook.com>',
+        from: `"[FEEDBACK]" ${env?.DEFAULT_SMTP_EMAIL}`,
       },
     }),
   ],
@@ -23,4 +24,3 @@ import { MailService } from './mail/mail.service';
   exports: [MailService],
 })
 export class MailModule {}
-// 'smtp://mkinitcpio.team@outlook.com:Kin11001Mk?@smtp.office365.com:587'

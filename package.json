@@ -1,10 +1,10 @@
 {
   "name": "car_main_server",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.1.0",
+  "description": "A server application for Car Maintenance app",
+  "author": "Gennady Artamonov",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "BSD",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",

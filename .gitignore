@@ -2,6 +2,14 @@
 /dist
 /node_modules
 
+# envs
+env/.env.development
+env/.env.development.local
+env/.env.production
+
+# dockers
+docker-compose.yml
+
 # Logs
 logs
 *.log
@@ -33,3 +41,4 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+mongo-init.js

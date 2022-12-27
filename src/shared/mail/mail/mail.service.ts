@@ -10,9 +10,9 @@ export class MailService {
     private logger: Logger,
   ) {}
 
-  public sendFeedback(params: CreateFeedbackDto): void {
+  public sendFeedback(params: CreateFeedbackDto): Promise<any> {
     const { email, type, text } = params;
-    this.mailerService
+    return this.mailerService
       .sendMail({
         to: `${env?.DEFAULT_EMAIL}`,
         from: `${env?.DEFAULT_SMTP_EMAIL}`,

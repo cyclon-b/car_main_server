@@ -1,9 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { lastValueFrom } from 'rxjs';
 import { CreateFeedbackDto } from './../../dto/create-feedback.dto';
 import { FeedbackService } from './../../providers/feedback/feedback.service';
 import { MailService } from './../../../../shared/mail/mail/mail.service';
+
 @ApiTags('feedback')
 @Controller('api/feedback')
 export class FeedbackController {
@@ -22,7 +22,8 @@ export class FeedbackController {
     description: 'Something went wrong, try it later',
   })
   public create(@Body() createFeedback: CreateFeedbackDto) {
-    this.mail.sendFeedback(createFeedback);
-    return lastValueFrom(this.feedbackService.create(createFeedback));
+    return this.mail.sendFeedback(createFeedback).then(() => {
+      return this.feedbackService.create(createFeedback);
+    });
   }
 }

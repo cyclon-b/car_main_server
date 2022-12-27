@@ -5,19 +5,20 @@ import { env } from 'process';
 
 @Module({
   imports: [
-    MailerModule.forRoot({
-      transport: {
-        host: env?.DEFAULT_SMTP_SERVER,
-        port: env?.DEFAULT_SMTP_PORT,
-        auth: {
-          user: env?.DEFAULT_SMTP_EMAIL,
-          pass: env?.SMTP_PASSWORD,
+    MailerModule.forRootAsync({
+      useFactory: () => ({
+        transport: {
+          host: env?.DEFAULT_SMTP_SERVER,
+          port: env?.DEFAULT_SMTP_PORT,
+          auth: {
+            user: env?.DEFAULT_SMTP_EMAIL,
+            pass: env?.SMTP_PASSWORD,
+          },
         },
-      },
-
-      defaults: {
-        from: `"[FEEDBACK]" ${env?.DEFAULT_SMTP_EMAIL}`,
-      },
+        defaults: {
+          from: `"[FEEDBACK]" ${env?.DEFAULT_SMTP_EMAIL}`,
+        },
+      }),
     }),
   ],
   providers: [MailService, Logger],
